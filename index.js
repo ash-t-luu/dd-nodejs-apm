@@ -6,7 +6,8 @@ const tracer = require('dd-trace').init({
     logInjection: true,
     debug: true,
     hostname: 'localhost',
-    port: 8136
+    port: 8136,
+    runtimeMetrics: true,
 });
 const express = require('express');
 const app = express();
