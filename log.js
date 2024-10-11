@@ -14,5 +14,4 @@ const logger = createLogger({
     ],
 });
 
-console.log(appRoot)
 module.exports = logger;
