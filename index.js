@@ -2,7 +2,7 @@ const tracer = require('dd-trace').init({
     profiling: true,
     env: 'prod',
     service: 'dd-nodejs-apm',
-    version: '1.0.0',
+    version: '1.0.1',
     logInjection: true,
     debug: true,
     hostname: 'localhost',
@@ -19,7 +19,7 @@ const quotes = [
   "The future belongs to those who believe in the beauty of their dreams. - Eleanor Roosevelt"
 ];
 
-app.get('/', (req, res) => {
+app.get('/', (_req, res) => {
   const span = tracer.startSpan('get_quote');
 
   try {
