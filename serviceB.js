@@ -1,5 +1,4 @@
 // serviceB.js
-const express = require('express');
 const tracer = require('dd-trace').init({
     profiling: true,
     env: 'prod',
@@ -8,6 +7,7 @@ const tracer = require('dd-trace').init({
     logInjection: true,
     runtimeMetrics: true,
 });
+const express = require('express');
 
 const appB = express();
 

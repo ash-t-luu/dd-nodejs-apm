@@ -1,4 +1,3 @@
-const express = require('express');
 const tracer = require('dd-trace').init({
     profiling: true,
     env: 'prod',
@@ -7,12 +6,17 @@ const tracer = require('dd-trace').init({
     logInjection: true,
     runtimeMetrics: true,
 });
+const express = require('express');
 const http = require('http');
-const appA = express();
 const logger = require('./log');
+
+const appA = express();
+
+let span;
 
 appA.get('/', (_req, res) => {
     res.send('Service A Root Path');
+    span = tracer.startSpan('service-a-req');
   });
 
 appA.get('/serviceA', async (_req, res) => {
@@ -29,6 +33,7 @@ appA.get('/serviceA', async (_req, res) => {
         response.on(data, (chunk) => {
             logger.info('Generating data...');
             data += chunk;
+            span.setTag('data', data);
         });
 
         response.on('end', () => {
