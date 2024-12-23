@@ -25,9 +25,11 @@ app.get("/", (_req, res) => {
 
   try {
     logger.info("Generating quote...");
-    const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
-    span.setTag('quote', randomQuote);
-    res.status(200).send(randomQuote + "\n");
+    tracer.trace('generate.quote', (generateSpan) => {
+      const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+      generateSpan.setTag('quote', randomQuote);    
+      res.status(200).send(randomQuote + "\n");
+    });
   } catch (error) {
     logger.error("An error occurred", {
       message: error.message,
