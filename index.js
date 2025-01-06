@@ -2,7 +2,7 @@ const tracer = require("dd-trace").init({
   profiling: true,
   env: "prod",
   service: "dd-nodejs-apm",
-  version: "1.0.0",
+  version: "1.0.1",
   logInjection: true,
   runtimeMetrics: true
 });
