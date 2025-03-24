@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "dd-trace": "file:/Users/ashley.luu/dd-trace-js",
+    "dd-trace": "^5.43.0",
     "express": "^4.21.1",
     "winston": "^3.15.0"
   }
